@@ -9,7 +9,8 @@ import '../widgets/app_drawer.dart';
 import '../providers/products.dart';
 import '../providers/cart.dart';
 import '../utils/app_routes.dart';
-import '../widgets/search_box.dart';
+
+import '../widgets/search_box.dart'; // Importe o widget SearchBox
 
 class ProductOverviewScreen extends StatefulWidget {
   @override
@@ -21,6 +22,12 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   String? _selectedCategory;
   String _searchTerm = '';
   List<String> _categories = [];
+
+  void _searchProducts(String searchTerm) {
+    setState(() {
+      _searchTerm = searchTerm;
+    });
+  }
 
   @override
   void initState() {
@@ -60,19 +67,32 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
     });
   }
 
-  void _searchProducts(String searchTerm) {
-    setState(() {
-      _searchTerm = searchTerm;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Minha Loja'),
+        title: _searchTerm.isEmpty
+            ? IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            setState(() {
+              _searchTerm = ' ';
+            });
+          },
+        )
+            : TextField(
+          onChanged: _searchProducts,
+          onSubmitted: _searchProducts,
+          decoration: InputDecoration(
+            hintText: 'Pesquisar...',
+            hintStyle: TextStyle(color: Colors.white),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+          ),
+          style: TextStyle(color: Colors.white),
+        ),
         actions: <Widget>[
-          SearchBox(onSearch: _searchProducts),
           IconButton(
             icon: Icon(Icons.filter_list),
             onPressed: () {
@@ -158,7 +178,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       )
           : ProductGrid(
         selectedCategory: _selectedCategory,
-        searchTerm: _searchTerm,
+        searchTerm: _searchTerm.trim(),
       ),
       drawer: AppDrawer(),
     );
