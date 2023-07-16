@@ -10,7 +10,7 @@ import '../providers/products.dart';
 import '../providers/cart.dart';
 import '../utils/app_routes.dart';
 
-import '../widgets/search_box.dart'; // Importe o widget SearchBox
+import '../widgets/search_box.dart';
 
 class ProductOverviewScreen extends StatefulWidget {
   @override
@@ -83,7 +83,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             : TextField(
           onChanged: _searchProducts,
           onSubmitted: _searchProducts,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: 'Pesquisar...',
             hintStyle: TextStyle(color: Colors.white),
             enabledBorder: UnderlineInputBorder(
@@ -109,7 +109,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Filtrar por Categoria',
                                 style: TextStyle(
                                   fontSize: 18,
@@ -117,14 +117,14 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                                 ),
                               ),
                               TextButton(
-                                child: Text(
+                                onPressed: _clearFilter,
+                                child: const Text(
                                   'Limpar',
                                   style: TextStyle(
                                     color: Colors.red,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                onPressed: _clearFilter,
                               ),
                             ],
                           ),
