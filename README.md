@@ -1,16 +1,11 @@
 # shop
 
-A new Flutter project.
+A primeira versão do app estava com o CRUD todo funcionando em escala menor com produtos com menos especificações. Mas sem tela de login.
 
-## Getting Started
+Fiz a integração com a api para puxar os produtos e implementei as funcionalidades de filtro e pesquisa, mas a função de editar e adicionar só modificam em uma página, quando ele vai para a home e puxa a api novamente ele reseta como estava, pois a API é imutável.
 
-This project is a starting point for a Flutter application.
+As funcionalidades de adicionar ao carrinho e de fazer a compra estão funcionando, pode verificar as compras na página de pedidos.
 
-A few resources to get you started if this is your first Flutter project:
+Tentei implementar a interface de login, mas sem sucesso nas funcionalidades, apenas implementei as partes visuais, mas pode observar os códigos em que tentei implementar o funcionamento para ver se segui a lógica correta.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para acessar a página de login, é necessário descomentar a rota nos arquivos de rota e alterar a rota raíz '/', necessário alterar na main.dart também.
